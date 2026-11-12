@@ -1,0 +1,35 @@
+services:
+  9router:
+    image: harbor.cmc-u.edu.vn/student360/9router@sha256:a2b002515264120630a854bf1cae896a3e09ea6b4d4b35cdeb78d564b0a92444
+    platform: linux/amd64
+    pull_policy: always
+    restart: unless-stopped
+    init: true
+    ports:
+      - "${BIND_ADDRESS:-0.0.0.0}:${PORT:-20128}:20128"
+    volumes:
+      - 9router-data:/app/data
+    environment:
+      DATA_DIR: /app/data
+      PORT: "20128"
+      HOSTNAME: 0.0.0.0
+      NODE_ENV: production
+      JWT_SECRET: ${JWT_SECRET:?Set JWT_SECRET in .env}
+      INITIAL_PASSWORD: ${INITIAL_PASSWORD:?Set INITIAL_PASSWORD in .env}
+      API_KEY_SECRET: ${API_KEY_SECRET:?Set API_KEY_SECRET in .env}
+      MACHINE_ID_SALT: ${MACHINE_ID_SALT:?Set MACHINE_ID_SALT in .env}
+      BASE_URL: ${BASE_URL:?Set BASE_URL in .env}
+      AUTH_COOKIE_SECURE: ${AUTH_COOKIE_SECURE:-false}
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:20128/api/health').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"
+      interval: 30s
+      timeout: 10s
+      start_period: 30s
+      retries: 3
+
+volumes:
+  9router-data:
