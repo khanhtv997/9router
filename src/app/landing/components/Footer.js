@@ -10,9 +10,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-2 lg:col-span-2">
             <div className="flex items-center gap-3 mb-6">
-              <div className="size-6 rounded bg-[#f97815] flex items-center justify-center text-white">
-                <span className="material-symbols-outlined text-[16px]">hub</span>
-              </div>
+              <img src="/icons/cmcu-app.svg" alt="" className="size-6 rounded" />
               <h3 className="text-white text-lg font-bold">{APP_NAME}</h3>
             </div>
             <p className="text-gray-500 text-sm max-w-xs mb-6">

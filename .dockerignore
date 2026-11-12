@@ -30,3 +30,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+
+# Source icon variant not used by the deployed app
+public/icons/CMC_logo_ver01.ico

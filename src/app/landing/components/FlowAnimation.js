@@ -51,9 +51,7 @@ export default function FlowAnimation() {
     <div className="mt-16 w-full max-w-4xl relative h-[360px] hidden md:flex items-center justify-center animate-[float_6s_ease-in-out_infinite]">
       {/* 9Router Hub - Center */}
       <div className="relative z-20 w-32 h-32 rounded-full bg-[#23180f] border-2 border-[#f97815] shadow-[0_0_40px_rgba(249,120,21,0.3)] flex flex-col items-center justify-center gap-1 group cursor-pointer hover:scale-105 transition-transform duration-500">
-        <span className="material-symbols-outlined text-4xl text-[#f97815]">
-          hub
-        </span>
+        <img src="/icons/cmcu-app.svg" alt="" className="size-10 rounded" />
         <span className="text-[10px] leading-tight font-bold text-white text-center max-w-24">
           {APP_NAME}
         </span>

@@ -21,7 +21,7 @@ export const metadata = {
   title: APP_NAME,
   description: "One endpoint for all your AI providers. Manage keys, monitor usage, and scale effortlessly.",
   icons: {
-    icon: "/favicon.svg",
+    icon: "/icons/cmcu-app.svg",
   },
 };
 
