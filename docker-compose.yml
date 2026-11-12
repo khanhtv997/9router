@@ -1,30 +1,35 @@
 services:
   9router:
-    image: decolua/9router:latest
-    container_name: 9router
-    restart: always
+    image: harbor.cmc-u.edu.vn/student360/9router@sha256:e52026ffb4a995a6737afc3ba3105638a1a778d1a6d8ad6787cbc462c37432d6
+    platform: linux/amd64
+    pull_policy: always
+    restart: unless-stopped
+    init: true
     ports:
-      - "20128:20128"
+      - "${BIND_ADDRESS:-0.0.0.0}:${PORT:-20128}:20128"
     volumes:
       - 9router-data:/app/data
-    env_file:
-      - .env
     environment:
       DATA_DIR: /app/data
       PORT: "20128"
-      HOSTNAME: "0.0.0.0"
+      HOSTNAME: 0.0.0.0
       NODE_ENV: production
-      HEADROOM_URL: http://headroom:8787
-    depends_on:
-      - headroom
-
-  headroom:
-    image: ghcr.io/chopratejas/headroom:latest
-    container_name: headroom
-    restart: always
-    ports:
-      - "127.0.0.1:8787:8787"
+      JWT_SECRET: ${JWT_SECRET:?Set JWT_SECRET in .env}
+      INITIAL_PASSWORD: ${INITIAL_PASSWORD:?Set INITIAL_PASSWORD in .env}
+      API_KEY_SECRET: ${API_KEY_SECRET:?Set API_KEY_SECRET in .env}
+      MACHINE_ID_SALT: ${MACHINE_ID_SALT:?Set MACHINE_ID_SALT in .env}
+      BASE_URL: ${BASE_URL:?Set BASE_URL in .env}
+      AUTH_COOKIE_SECURE: ${AUTH_COOKIE_SECURE:-false}
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:20128/api/health').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"
+      interval: 30s
+      timeout: 10s
+      start_period: 30s
+      retries: 3
 
 volumes:
   9router-data:
-    name: 9router-data
