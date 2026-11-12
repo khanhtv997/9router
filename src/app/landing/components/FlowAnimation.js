@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import ProviderIcon from "@/shared/components/ProviderIcon";
+import { APP_NAME } from "@/shared/constants/branding";
 
 const CLI_TOOLS = [
   { id: "claude", name: "Claude Code", image: "/providers/claude.png" },
@@ -53,8 +54,8 @@ export default function FlowAnimation() {
         <span className="material-symbols-outlined text-4xl text-[#f97815]">
           hub
         </span>
-        <span className="text-xs font-bold text-white tracking-widest uppercase">
-          9Router
+        <span className="text-[10px] leading-tight font-bold text-white text-center max-w-24">
+          {APP_NAME}
         </span>
         <div className="absolute inset-0 rounded-full border border-[#f97815]/30 animate-ping opacity-20"></div>
       </div>
