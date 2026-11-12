@@ -33,3 +33,7 @@ yarn-error.log*
 
 # Source icon variant not used by the deployed app
 public/icons/CMC_logo_ver01.ico
+
+# Local browser-check artifacts
+.playwright-cli
+output/playwright
