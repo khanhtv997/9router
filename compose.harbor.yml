@@ -1,6 +1,6 @@
 services:
   9router:
-    image: harbor.cmc-u.edu.vn/student360/9router@sha256:a2b002515264120630a854bf1cae896a3e09ea6b4d4b35cdeb78d564b0a92444
+    image: harbor.cmc-u.edu.vn/student360/9router@sha256:e52026ffb4a995a6737afc3ba3105638a1a778d1a6d8ad6787cbc462c37432d6
     platform: linux/amd64
     pull_policy: always
     restart: unless-stopped
